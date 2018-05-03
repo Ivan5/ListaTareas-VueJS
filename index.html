@@ -8,12 +8,27 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div id="app">
+<body class="container">
+  <div id="app" class="jumbotron">
     <h1>{{titulo}}</h1>
-    <input type="text" placeholder="Escribe la nueva tarea" v-model="nuevaTarea"><button type="button" v-on:click="agregarTarea()">Agregar Tarea</button>
-    <ul>
-      <li v-for="tarea in tareas">{{tarea.titulo}}</li>
+    <div class="input-group">
+      <input type="text" placeholder="Escribe la nueva tarea" v-model="nuevaTarea" class="form-control" v-on:keyup.enter="agregarTarea()">
+      <span class="input-group-btn">
+        <button type="button" v-on:click="agregarTarea()" class="btn btn-primary">Agregar Tarea</button>
+      </span>
+    </div>
+    <ul class="list-group">
+      <li v-for="(tarea , index) in tareas" class="list-group-item" :class="{terminada:tarea.terminada}">
+        {{tarea.titulo}}
+        <span class="pull-right">
+          <button type="button" class="btn btn-success btn-xs" v-on:click="tarea.terminada = !tarea.terminada">
+            <span class="glyphicon glyphicon-ok"></span>
+          </button>
+          <button type="button" class="btn btn-danger btn-xs" v-on:click="borrar(index)">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </span>
+      </li>
     </ul>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

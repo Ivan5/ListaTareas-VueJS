@@ -19,6 +19,9 @@ const app = new Vue({
           });
       }
       this.nuevaTarea = '';
+    },
+    borrar: function(index){
+      this.tareas.splice(index,1);
     }
   }
 })
