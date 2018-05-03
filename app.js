@@ -10,6 +10,15 @@ const app = new Vue({
     nuevaTarea: ''
   },
   methods:{
-
+    agregarTarea: function(){
+      let texto = this.nuevaTarea.trim();
+      if(texto){
+          this.tareas.push({
+            titulo:texto,
+            terminada:false
+          });
+      }
+      this.nuevaTarea = '';
+    }
   }
 })
